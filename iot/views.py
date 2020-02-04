@@ -1,0 +1,101 @@
+from django.shortcuts import render
+from django.http import JsonResponse, HttpResponse
+from .forms import *
+from django.core.files.storage import FileSystemStorage
+from main.v2 import *
+from datetime import datetime, timedelta
+from .algo import *
+
+
+
+def home(request):
+    return JsonResponse("{'iot'}", safe=False)
+
+
+def acview(request):
+    ls = Ac.objects.get(id=1) 
+    if request.method == "POST":
+        form = AcIot(request.POST)
+        if form.is_valid():
+            ac_io = form.cleaned_data["ac_io"]
+            ac_temp = form.cleaned_data['ac_temp']
+            ls.ac_temp = float(ac_temp)
+            ls.ac_io = ac_io
+            ls.save()
+    else:
+        form = AcIot()
+    return render(request, 'iot/acio.html', {
+        'form' : form
+    })
+
+
+
+def Tempc(request):
+    if request.method == "POST":
+        form = AcForm(request.POST)
+        print(request.method)
+        if form.is_valid():
+            ac_io = form.cleaned_data['ac_io']
+            ac_temp = form.cleaned_data['ac_temp']
+            ac_city = form.cleaned_data['ac_city']
+            x = Ac(ac_io=ac_io, ac_temp=ac_temp, ac_city=ac_city)
+            x.save()
+            ac_temp = float(ac_temp)
+            print(f'''
+            bool = {ac_io}
+            temp = {ac_temp}
+            city = {ac_city}
+            Data collected
+            ''')
+    else:
+        form = AcForm()
+    return render(request, "iot/temp.html", {
+        "form" : form
+    })
+
+
+def ac_task(request):
+    ls = Ac.objects.get(id=1)
+    ls.ac_temp = float(ls.ac_temp)
+    task = Tempc2(ls.ac_city, ls.ac_io, ls.ac_temp)
+    ap = {
+                'ac_temp': ls.ac_temp,
+                'city' : ls.ac_city,
+                'ac_state' : ls.ac_io,
+                'task': task,
+            }
+    ap = json.dumps(ap)
+    ap = json.loads(ap)
+    return JsonResponse(ap, safe=False)
+
+
+def usageView(request):
+    if request.method == "POST":
+        form = UsageForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            appliance = form.cleaned_data['appliance']
+            start = form.cleaned_data['start']
+            stop = form.cleaned_data['stop']
+            ls = Appliances.objects.get(a_name=appliance)
+            applianceSimulator(ls.a_name, ls.a_kwh, stop, start)
+            x = Usage(appliance=appliance, start=start, stop=stop, name=name)
+            x.save()
+    else:
+        form = UsageForm()
+    return render(request, "iot/us.html", {
+        "form" : form
+    })
+
+
+def lockout(request):
+    if request.method == "POST":
+        form = ioForm(request.POST)
+        if form.is_valid():
+            io = form.cleaned_data['io']
+            ls = Appliances.objects.get(a_lockout=io)
+            return HttpResponse(ls)
+    else:
+        form = ioForm()
+    
+    return render(request, "iot/io.html", {"form":form})

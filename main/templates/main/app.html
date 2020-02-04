@@ -1,0 +1,8 @@
+{% extends "main/base.html" %}
+{% block title %}appliances{% endblock %}
+{% block content %}
+    <form action="/api/appliances/" method="POST">
+        {{form}}
+        <input type="submit" value='+'>
+    </form>
+{% endblock %}

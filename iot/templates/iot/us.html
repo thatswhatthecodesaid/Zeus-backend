@@ -1,0 +1,8 @@
+{% extends "main/base.html" %}
+{% block title %}usage{% endblock %}
+{% block content %}
+    <form action="/iot/usage/" method="POST">
+        {{form}}
+        <input type="submit" value='+'>
+    </form>
+{% endblock %}

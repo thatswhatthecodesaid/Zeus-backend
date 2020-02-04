@@ -1,0 +1,8 @@
+{% extends "main/base.html" %}
+{% block title %}ac temp{% endblock %}
+{% block content %}
+    <form action="/iot/acview/" method="POST">
+        {{form}}
+        <input type="submit" value='+'>
+    </form>
+{% endblock %}
