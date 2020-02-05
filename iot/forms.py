@@ -20,3 +20,17 @@ class UsageForm(forms.ModelForm):
 
 class ioForm(forms.Form):
     io = forms.BooleanField(required=False)
+
+
+class ioForm2(forms.ModelForm):
+    a_io = forms.BooleanField(required=False)
+    class Meta:
+        model = ioModel
+        fields = "__all__"
+
+
+class changeLockoutForm(forms.ModelForm):
+    a_lockout = forms.BooleanField(required=False)
+    class Meta:
+        model = Lockout
+        fields = "__all__"

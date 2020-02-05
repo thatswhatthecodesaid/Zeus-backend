@@ -19,8 +19,7 @@ class Appliances(models.Model):
     a_priority = models.CharField(max_length=100)
     a_control = models.BooleanField() #1 = User Control, 0 - Auto Control
     a_lockout = models.BooleanField() #1 = on when locked , 0 - off whne locked
-    
-
+    a_io = models.BooleanField()
     def __str__(self):
         return self.a_name
 
@@ -31,6 +30,7 @@ class RoomPlan(models.Model):
 
     def __str__(self):
         return self.floor_id
+
 
 
 

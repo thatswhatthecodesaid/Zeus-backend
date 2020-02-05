@@ -99,3 +99,37 @@ def lockout(request):
         form = ioForm()
     
     return render(request, "iot/io.html", {"form":form})
+
+
+def applianceIo(request):
+    if request.method == "POST":
+        form = ioForm2(request.POST)
+        if form.is_valid():
+            appliance = form.cleaned_data["appliance"]
+            a_io = form.cleaned_data["a_io"]
+            ls = Appliances.objects.get(a_name=appliance)
+            ls.a_io = a_io
+            ls.save()
+            return HttpResponse(ls)
+    else:
+        form = ioForm2()
+    return render(request, "iot/io2.html", {
+        "form": form
+    })
+
+
+def changeLockout(request):
+    if request.method == "POST":
+        form = changeLockoutForm(request.POST)
+        if form.is_valid():
+            appliance = form.cleaned_data["appliance"]
+            a_lockout = form.cleaned_data["a_lockout"]
+            ls = Appliances.objects.get(a_name=appliance)
+            ls.a_lockout = a_lockout
+            ls.save()
+            return HttpResponse(ls)
+    else:
+        form = changeLockoutForm()
+    return render(request, "iot/lockout.html", {
+        "form": form
+    })

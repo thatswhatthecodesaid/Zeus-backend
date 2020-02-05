@@ -9,7 +9,7 @@ urlpatterns = [
     path("aciot/", csrf_exempt(views.acview)),
     path("ac/", csrf_exempt(views.ac_task)),
     path("usage/", csrf_exempt(views.usageView)),
-    path("io/", csrf_exempt(views.lockout))
-
-
+    path("lockout/", csrf_exempt(views.lockout)),
+    path("io/", csrf_exempt(views.applianceIo)),
+    path("lockoutchange/", csrf_exempt(views.changeLockout)),
 ]

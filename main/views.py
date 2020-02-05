@@ -56,6 +56,7 @@ def a_view(request):
             a_priority = form.cleaned_data['a_priority']
             a_control = form.cleaned_data['a_control']
             a_lockout = form.cleaned_data['a_lockout']
+            a_io = form.cleaned_data['a_io']
             u = Appliances(
                 a_name=a_name,
                 a_rating=a_rating,
@@ -63,6 +64,7 @@ def a_view(request):
                 a_priority=a_priority,
                 a_control=a_control,
                 a_lockout=a_lockout,
+                a_io=a_io,
             )
             ap_info = {
                 'a_name': a_name,
@@ -71,6 +73,7 @@ def a_view(request):
                 'a_priority': a_priority,
                 'a_control': a_control,
                 'a_lockout': a_lockout,
+                'a_io' : a_io
             }
             ap_info = json.dumps(ap_info)
             ap_info = json.loads(ap_info)

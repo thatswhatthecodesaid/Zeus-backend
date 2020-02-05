@@ -12,3 +12,16 @@ class Usage(models.Model):
     appliance = models.ForeignKey(Appliances, on_delete=models.CASCADE)
     start = models.CharField(max_length=100)
     stop = models.CharField(max_length=100) #auto_now=False, auto_now_add=False
+
+
+class ioModel(models.Model):
+    appliance = models.ForeignKey(Appliances, on_delete=models.CASCADE)
+    a_io = models.BooleanField()
+
+
+class Lockout(models.Model):
+    appliance = models.ForeignKey(Appliances, on_delete=models.CASCADE)
+    a_lockout = models.BooleanField()
+
+
+
