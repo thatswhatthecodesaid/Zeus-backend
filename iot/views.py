@@ -9,7 +9,7 @@ from .algo import *
 
 
 def home(request):
-    return JsonResponse("{'iot'}", safe=False)
+    return render(request, "iot/home.html")
 
 
 def acview(request):
@@ -17,6 +17,7 @@ def acview(request):
     if request.method == "POST":
         form = AcIot(request.POST)
         if form.is_valid():
+            print("is valid")
             ac_io = form.cleaned_data["ac_io"]
             ac_temp = form.cleaned_data['ac_temp']
             ls.ac_temp = float(ac_temp)
@@ -56,7 +57,7 @@ def Tempc(request):
 
 def ac_task(request):
     ls = Ac.objects.get(id=1)
-    ls.ac_temp = float(ls.ac_temp)
+    ls.ac_temp = float(ls.ac_temp) + 273
     task = Tempc2(ls.ac_city, ls.ac_io, ls.ac_temp)
     ap = {
                 'ac_temp': ls.ac_temp,
@@ -78,7 +79,7 @@ def usageView(request):
             start = form.cleaned_data['start']
             stop = form.cleaned_data['stop']
             ls = Appliances.objects.get(a_name=appliance)
-            applianceSimulator(ls.a_name, ls.a_kwh, stop, start)
+            applianceSimulator(ls.a_name, ls.a_kwh, stop, start, ls.a_name)
             x = Usage(appliance=appliance, start=start, stop=stop, name=name)
             x.save()
     else:
