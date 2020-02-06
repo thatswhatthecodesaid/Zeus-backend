@@ -34,3 +34,7 @@ class changeLockoutForm(forms.ModelForm):
     class Meta:
         model = Lockout
         fields = "__all__"
+
+
+class luxForm(forms.Form):
+    lux = forms.CharField(max_length=100)

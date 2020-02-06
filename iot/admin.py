@@ -1,3 +1,8 @@
 from django.contrib import admin
+from .models import *
 
-# Register your models here.
+
+admin.site.register(Ac)
+admin.site.register(Usage)
+admin.site.register(ioModel)
+admin.site.register(Lockout)

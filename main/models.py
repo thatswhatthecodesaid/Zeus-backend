@@ -24,13 +24,9 @@ class Appliances(models.Model):
         return self.a_name
 
 
-class RoomPlan(models.Model):
-    floor_id = models.IntegerField()
-    appliances = models.ManyToManyField(Appliances)
-
-    def __str__(self):
-        return self.floor_id
-
-
-
+class kwhUsage(models.Model):
+    appliance = models.ForeignKey(Appliances, on_delete=models.CASCADE)
+    start = models.CharField(max_length=50)
+    stop = models.CharField(max_length=50)
+    kwh = models.CharField(max_length=100)
 

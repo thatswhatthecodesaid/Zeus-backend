@@ -88,3 +88,8 @@ def a_view(request):
     return render(request, "main/app.html", {
         'form':form
     })
+
+
+def kwhView(request):
+    if request.method == "POST":
+        form = 

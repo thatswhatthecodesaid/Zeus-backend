@@ -5,6 +5,7 @@ from django.core.files.storage import FileSystemStorage
 from main.v2 import *
 from datetime import datetime, timedelta
 from .algo import *
+import time
 
 
 
@@ -133,4 +134,25 @@ def changeLockout(request):
         form = changeLockoutForm()
     return render(request, "iot/lockout.html", {
         "form": form
+    })
+
+
+def lux(request):
+    if request.method == "POST":
+        form = luxForm(request.POST)
+        if form.is_valid():
+            lux = form.cleaned_data["lux"]
+            lux = float(lux)
+            if lux > 107527:
+                ls = Appliances.objects.get(a_name="tubelight")
+                ls.a_io = False
+                ls.save()
+            elif lux < 107527:
+                ls = Appliances.objects.get(a_name="tubelight")
+                ls.a_io = True
+                ls.save()
+    else:
+        form = luxForm()
+    return render(request, "iot/lux.html", {
+        'form' : form,
     })
