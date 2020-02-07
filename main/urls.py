@@ -12,4 +12,6 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('api/change/<int:id>', csrf_exempt(views.ScoreUpdate)),
     path('api/appliances/', csrf_exempt(views.a_view)),
+    path("api/bill/", csrf_exempt(views.kwhView)),
+    path("api/room/", csrf_exempt(views.RoomView)),
 ]

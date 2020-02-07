@@ -28,5 +28,12 @@ def applianceSimulator(name, a_wh, stop, start, a_name):
             nfw.writerow([i,a_name,frm,too,usage])
 
 
-
-        
+def priceCalcuation(a_wh, stop, start, a_name):
+    a_wm =float(a_wh)/60
+    t_format = "%H:%M"
+    off_time = stop
+    on_time = start
+    diff = datetime.strptime(off_time, t_format) - datetime.strptime(on_time, t_format)
+    usage = ((diff.seconds)/60)*a_wm
+    price = (usage/1000)*5
+    return usage

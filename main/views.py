@@ -5,6 +5,8 @@ from .forms import *
 from .serializers import *
 from rest_framework import viewsets, permissions
 from .v2 import *
+from iot.algo import *
+from django.http import HttpResponse
 
 
 def Uview(request):
@@ -92,4 +94,29 @@ def a_view(request):
 
 def kwhView(request):
     if request.method == "POST":
-        form = 
+        form = BillForm(request.POST)
+        if form.is_valid():
+            appliance = form.cleaned_data['appliance']
+            start = form.cleaned_data['start']
+            stop = form.cleaned_data['stop']
+            ls = Appliances.objects.get(a_name=appliance)
+            print(priceCalcuation(ls.a_kwh, stop, start, ls.a_name))
+            return HttpResponse(priceCalcuation(ls.a_kwh, stop, start, ls.a_name))
+    else:
+        form = BillForm()
+    return render(request, "main/bill.html", {
+        "form" : form
+    })
+
+
+def RoomView(request):
+    if request.method == "POST":
+        form = RoomForm(request.POST)
+        if form.is_valid():
+            room = form.cleaned_data["room"]
+            x = Room(room=room).save()
+    else:
+        form = RoomForm()
+    return render(request, "main/room.html", {
+        "form" : form,
+    })

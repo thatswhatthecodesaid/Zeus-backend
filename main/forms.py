@@ -23,9 +23,10 @@ class BillForm(forms.ModelForm):
     class Meta:
         model = kwhUsage
         fields = "__all__"
-        
 
 
-
-
-        
+class RoomForm(forms.ModelForm):
+    class Meta:
+        model = Room
+        fields = "__all__"
+    
