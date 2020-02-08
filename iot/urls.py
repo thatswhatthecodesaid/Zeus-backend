@@ -12,5 +12,5 @@ urlpatterns = [
     path("lockout/", csrf_exempt(views.lockout)),
     path("io/", csrf_exempt(views.applianceIo)),
     path("lockoutchange/", csrf_exempt(views.changeLockout)),
-    path("lux/", csrf_exempt(views.lux)),
+    path("lux/", csrf_exempt(views.tubelightView)),
 ]

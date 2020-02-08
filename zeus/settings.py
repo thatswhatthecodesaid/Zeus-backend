@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main.apps.MainConfig',
     'rest_framework',
-    'iot.apps.IotConfig'
+    'iot.apps.IotConfig',
+    'popu.apps.PopuConfig'
 ]
 
 MIDDLEWARE = [

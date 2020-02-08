@@ -14,13 +14,14 @@ def home(request):
 
 
 def acview(request):
-    ls = Ac.objects.get(id=1) 
     if request.method == "POST":
         form = AcIot(request.POST)
         if form.is_valid():
-            print("is valid")
+            a_name = form.cleaned_data["a_name"]
             ac_io = form.cleaned_data["ac_io"]
             ac_temp = form.cleaned_data['ac_temp']
+            ls = Appliances.objects.get(a_name=a_name)
+            print(ls.a_name)
             ls.ac_temp = float(ac_temp)
             ls.ac_io = ac_io
             ls.save()
@@ -137,22 +138,26 @@ def changeLockout(request):
     })
 
 
-def lux(request):
+
+def tubelightView(request):
     if request.method == "POST":
-        form = luxForm(request.POST)
+        form = tubeLightForm(request.POST)
         if form.is_valid():
-            lux = form.cleaned_data["lux"]
-            lux = float(lux)
-            if lux > 107527:
-                ls = Appliances.objects.get(a_name="tubelight")
-                ls.a_io = False
-                ls.save()
-            elif lux < 107527:
-                ls = Appliances.objects.get(a_name="tubelight")
+            a_name = form.cleaned_data["a_name"]
+            a_lux = form.cleaned_data["a_lux"]
+            a_io = form.cleaned_data["a_io"]
+            x = tubeLight(a_name=a_name, a_io=a_io)
+            ls = Appliances.objects.get(a_name=a_name)
+            lux_sun = 10752
+            a_lux = float(a_lux)
+            if a_lux < lux_sun:
                 ls.a_io = True
-                ls.save()
+            elif a_lux > lux_sun:
+                ls.a_io
+            x.save()
     else:
-        form = luxForm()
+        form = tubeLightForm()
     return render(request, "iot/lux.html", {
-        'form' : form,
+        "form" : form,
     })
+            

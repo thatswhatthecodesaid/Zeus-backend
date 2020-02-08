@@ -17,11 +17,8 @@ def Uview(request):
             phone = form.cleaned_data["phone"]
             email = form.cleaned_data["email"]
             address = form.cleaned_data["address"]
-
-
             x = U(name=name, phone=phone)
             x.save()
-
             return JsonResponse("{'saved'}", safe=False)
     else:
         form = Uform()
@@ -120,3 +117,6 @@ def RoomView(request):
     return render(request, "main/room.html", {
         "form" : form,
     })
+
+
+

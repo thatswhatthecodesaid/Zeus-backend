@@ -3,6 +3,7 @@ from . import views
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework import routers
 
+
 router = routers.DefaultRouter()
 router.register('usview', views.USView)
 
@@ -14,4 +15,4 @@ urlpatterns = [
     path('api/appliances/', csrf_exempt(views.a_view)),
     path("api/bill/", csrf_exempt(views.kwhView)),
     path("api/room/", csrf_exempt(views.RoomView)),
-]
+    ]
