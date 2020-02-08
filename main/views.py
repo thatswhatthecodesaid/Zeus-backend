@@ -7,6 +7,14 @@ from rest_framework import viewsets, permissions
 from .v2 import *
 from iot.algo import *
 from django.http import HttpResponse
+import pandas as pd
+import numpy as np
+from keras.models import Sequential
+from datetime import datetime as dt
+from scipy.stats import zscore
+import tensorflow as tf
+from tensorflow.keras import layers
+from statistics import mean
 
 
 def Uview(request):
@@ -34,6 +42,7 @@ class USView(viewsets.ModelViewSet):
 def ScoreUpdate(request,id):
     ls = U.objects.get(id=id)
     if request.method == "POST":
+
         form = Change_data(request.POST)
         if form.is_valid():
             score = form.cleaned_data['score']
@@ -119,4 +128,15 @@ def RoomView(request):
     })
 
 
-
+def Mlview(request):
+    if request.method == "POST":
+        form = MLform(request.POST)
+        if form.is_valid():
+            da = form.cleaned_data['da']
+            print(da)
+            mn = mean(Ml(da))
+            y = {}
+            y["mean"] = mn
+    else: 
+        form = MLform()
+    return JsonResponse(y, safe=False)

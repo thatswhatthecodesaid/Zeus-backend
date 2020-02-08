@@ -5,6 +5,7 @@ class Ac(models.Model):
     ac_io = models.BooleanField()
     ac_city = models.CharField(max_length=100)
     ac_temp = models.CharField(max_length=100)
+    a_name = models.CharField(max_length=100)
 
 
 

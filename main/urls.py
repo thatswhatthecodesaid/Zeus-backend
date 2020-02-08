@@ -15,4 +15,5 @@ urlpatterns = [
     path('api/appliances/', csrf_exempt(views.a_view)),
     path("api/bill/", csrf_exempt(views.kwhView)),
     path("api/room/", csrf_exempt(views.RoomView)),
-    ]
+    path("api/ml/", csrf_exempt(views.Mlview))
+]

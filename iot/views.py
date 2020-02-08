@@ -38,6 +38,7 @@ def Tempc(request):
         form = AcForm(request.POST)
         print(request.method)
         if form.is_valid():
+            a_name = form.cleaned_data["a_name"]
             ac_io = form.cleaned_data['ac_io']
             ac_temp = form.cleaned_data['ac_temp']
             ac_city = form.cleaned_data['ac_city']
@@ -58,7 +59,7 @@ def Tempc(request):
 
 
 def ac_task(request):
-    ls = Ac.objects.get(id=1)
+    ls = Ac.objects.get(id=7)
     ls.ac_temp = float(ls.ac_temp) + 273
     task = Tempc2(ls.ac_city, ls.ac_io, ls.ac_temp)
     ap = {
@@ -66,6 +67,7 @@ def ac_task(request):
                 'city' : ls.ac_city,
                 'ac_state' : ls.ac_io,
                 'task': task,
+                'ac_name':ls.a_name,
             }
     ap = json.dumps(ap)
     ap = json.loads(ap)

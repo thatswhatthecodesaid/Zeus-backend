@@ -3,6 +3,11 @@ from .models import *
 from main.models import *
 
 class AcForm(forms.ModelForm):
+    CHOICES = (
+        ("ac1", "Ac room"),
+        ("ac2", "Ac bedroom")
+    )
+    a_name = forms.ChoiceField(choices=CHOICES)
     class Meta:
         model = Ac
         fields = "__all__"

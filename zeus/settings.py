@@ -25,7 +25,7 @@ SECRET_KEY = 'bo0hx(u#szc7^_z=2-9*e27z7tk#w83$y44k12m^8&z!aq1_kv'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'main.apps.MainConfig',
     'rest_framework',
     'iot.apps.IotConfig',
-    'popu.apps.PopuConfig'
+    'popu.apps.PopuConfig',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
@@ -51,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware'
 ]
 
 ROOT_URLCONF = 'zeus.urls'
@@ -123,7 +125,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 MEDIA_URL = '/uploadedfiles/'
+
+
+CORS_ORIGIN_ALLOW_ALL = True
