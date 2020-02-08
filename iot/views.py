@@ -107,18 +107,16 @@ def lockout(request):
 def applianceIo(request):
     if request.method == "POST":
         form = ioForm2(request.POST)
+        print(request.POST)
         if form.is_valid():
             appliance = form.cleaned_data["appliance"]
             a_io = form.cleaned_data["a_io"]
             ls = Appliances.objects.get(a_name=appliance)
             ls.a_io = a_io
             ls.save()
-            return HttpResponse(ls)
     else:
         form = ioForm2()
-    return render(request, "iot/io2.html", {
-        "form": form
-    })
+    return JsonResponse("{'io'}", safe=False)
 
 
 def changeLockout(request):

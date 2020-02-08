@@ -4,5 +4,5 @@ from .views import *
 
 urlpatterns = [
     path("rooms/", Rooms),
-    path("air/", appliancesRoom)
+    path("air/", ApplianceAPI)
 ]

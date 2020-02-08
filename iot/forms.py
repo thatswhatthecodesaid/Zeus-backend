@@ -18,11 +18,9 @@ class ioForm(forms.Form):
     io = forms.BooleanField(required=False)
 
 
-class ioForm2(forms.ModelForm):
+class ioForm2(forms.Form):
     a_io = forms.BooleanField(required=False)
-    class Meta:
-        model = ioModel
-        fields = "__all__"
+    appliance = forms.CharField(max_length=100)
 
 
 class changeLockoutForm(forms.ModelForm):
