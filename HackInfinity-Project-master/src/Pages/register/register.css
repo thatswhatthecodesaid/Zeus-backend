@@ -1,0 +1,52 @@
+*{
+    user-select: none;
+}
+.header{
+    padding:50px;
+    font-size:3.5rem;font-weight:300;line-height:1.2;
+}
+#registerphone{
+    padding:15px;
+    width:80%;
+    border-radius: 40px;
+    border:2px solid var(--gray-10);;
+    font-size: 15px;
+}
+#registerbtn{
+    cursor: pointer;
+    padding:10px;
+    width: 80%;
+    height: 100%;
+    border: 1px solid grey;
+    border-radius: 30px;
+    transition-duration: 0.2s;
+    outline: 0;
+}
+#registerbtn:hover{
+    transform: scale(1.1);
+    transition-duration: 0.25s;
+}
+#registerbtn:active{
+    transform: scale(0.9);
+}
+.form-group{
+    padding: 20px;
+}
+#registerphone{
+    outline:0px;
+    transition-duration: 0.25s;
+    border:1px solid #878787;
+}
+#registerphone:focus{
+    box-shadow: 0 0 5px grey;
+    transform: scale(1.1);
+    background-color: #fff;
+}
+#registerphone:hover{
+    transform: scale(1.1);
+}
+
+form{
+    border: 1px solid #dedede;
+    margin: 20px;
+}

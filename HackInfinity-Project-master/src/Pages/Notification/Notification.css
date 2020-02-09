@@ -1,0 +1,30 @@
+.Notification-Container{
+    padding: 10px;
+    background:linear-gradient(-45deg, #f200ff,#00ffdc);
+    height: 100vh;
+    overflow-y: scroll;
+}
+.Notification{
+    background-color: whitesmoke;
+    box-shadow: 0 0 10px gray;
+    width:100%;
+    text-align: center;
+    padding:20px;
+    transform: scale(0.9);
+    border-radius: 5px;
+    transition-duration: 0.2s;
+    display: inline-flex;
+    flex-direction: row;
+}
+.Notification:active{
+    transform: scale(0.7);
+}
+.Notification-Content{
+    padding: 5px;
+    width: 100%;
+}
+.Notification-Actions{
+    width: 10%;
+    font-size: 30px;
+    text-align: center;
+}

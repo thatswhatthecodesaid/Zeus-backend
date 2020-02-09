@@ -1,0 +1,58 @@
+#Navbar{
+    top:0px;
+    position: sticky;
+    left:0px;
+    right:0px;
+    background-color: #363636;
+    color: whitesmoke;
+    display: grid;
+    grid-template-areas: "logo title drawer";
+    grid-template-columns: 100px auto 100px;
+    box-shadow: 0 0 10px #363636;
+    /* TO be Changed */
+    z-index: 2;
+}
+#logo{
+    padding:15px;
+    grid-area:logo;
+    color: white;
+    text-decoration: none;
+}
+#title{
+    padding:15px;
+    padding:15px;
+    grid-area:title;
+}
+#drawer{
+    padding-top:15px;
+    padding-bottom:15px;
+    grid-area: drawer;
+}
+.elem{
+    user-select: none;
+    cursor: pointer;
+}
+.elem:active{
+    color:#a7a7a7;
+}
+.drawer-content{
+    height: 100vh;
+    z-index: 3;
+}
+.Navbar_Content_Container{
+    width:100%;
+    list-style: none;
+}
+.Navbar_Content_Item{
+    padding: 10px;
+    width:80vw;
+    transition-duration: 0.2s;
+}
+.Navbar_Content_Container{
+    width: 100%;
+}
+.Navbar_Content_Item:active{
+    transform: scale(0.8);
+    background: white;
+    color: black;
+}

@@ -1,0 +1,1 @@
+Changes are to be made in Navbar.css where padding is to be configured
